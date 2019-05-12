@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "727833192391",
+    "firebase_url": "https://fir-poke-150ef.firebaseio.com",
+    "project_id": "fir-poke-150ef",
+    "storage_bucket": "fir-poke-150ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727833192391:android:c4e068668937f111",
+        "android_client_info": {
+          "package_name": "com.szte.firebasepoke"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "727833192391-50k8c04obglkcteqgbpegk33qther17f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMnTrjubyc6RpfNSeRzQxLTjRdTM_xFds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "727833192391-50k8c04obglkcteqgbpegk33qther17f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
