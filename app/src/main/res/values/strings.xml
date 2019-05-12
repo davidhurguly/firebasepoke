@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Firebase Poke</string>
+    <string name="sendpoke">send poke</string>
+    <string name="FirebaseToken">Other firebase token</string>
+    <string name="FirebaseMessage">Firebase message</string>
 </resources>
