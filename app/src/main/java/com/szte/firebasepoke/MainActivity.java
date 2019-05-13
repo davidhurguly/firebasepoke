@@ -1,8 +1,6 @@
 package com.szte.firebasepoke;
 
 
-import android.app.Notification;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,21 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
-import com.google.firebase.messaging.RemoteMessage;
-
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -66,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    private void remoteMessageSender(TextView otherToken, TextView messageBox) {
-        new NotificationSender().doInBackground(otherToken.getText().toString(), messageBox.getText().toString());
+    private String remoteMessageSender(TextView otherToken, TextView messageBox) {
+       return new NotificationSender().doInBackground(otherToken.getText().toString(), messageBox.getText().toString());
     }
 
 }
