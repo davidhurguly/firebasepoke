@@ -66,61 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    private void remoteMessageSender(TextView otherToken, TextView messageBox){
-
-        final String authKey = SERVER_AUTH_KEY;
-        final String FMCurl = API_URL;
-        final String DeviceIdKey = otherToken.getText().toString();
-
-            try {
-                URL url = new URL(FMCurl);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                conn.setUseCaches(false);
-                conn.setDoInput(true);
-                conn.setDoOutput(true);
-
-                conn.setRequestMethod("POST");
-                conn.setRequestProperty("Authorization", "key=" + authKey);
-                conn.setRequestProperty("Content-Type", "application/json");
-
-                System.out.println(DeviceIdKey);
-
-                JSONObject data = new JSONObject();
-                    data.put("to", DeviceIdKey.trim());
-
-                JSONObject info = new JSONObject();
-                    info.put("title", "FCM Notificatoin");
-                    info.put("body", messageBox.getText().toString());
-                    data.put("notification", info);
-
-                System.out.println(data.toString());
-
-                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-                    wr.write(data.toString());
-                    wr.flush();
-                    wr.close();
-
-                int responseCode = conn.getResponseCode();
-                    System.out.println("Response Code : " + responseCode);
-
-                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                String inputLine;
-                StringBuffer response = new StringBuffer();
-
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                in.close();
-
-
-            }
-                catch(Exception e)
-            {
-                System.out.println(e);
-            }
-
-
-        }
+    private void remoteMessageSender(TextView otherToken, TextView messageBox) {
+        new NotificationSender().doInBackground(otherToken.getText().toString(), messageBox.getText().toString());
+    }
 
 }

@@ -1,11 +1,7 @@
 package com.szte.firebasepoke;
 
 import android.os.AsyncTask;
-
-import com.google.firebase.messaging.RemoteMessage;
-
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -20,6 +16,9 @@ public class NotificationSender extends AsyncTask<String, Void, Void> {
     @Override
     protected Void doInBackground(String... strings) {
 
+        String deviceIdKey = strings[0];
+        String messageBox = strings[1];
+
         try {
             URL url = new URL(FMCurl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -32,14 +31,14 @@ public class NotificationSender extends AsyncTask<String, Void, Void> {
             conn.setRequestProperty("Authorization", "key=" + authKey);
             conn.setRequestProperty("Content-Type", "application/json");
 
-            System.out.println(DeviceIdKey);
+            System.out.println(deviceIdKey);
 
             JSONObject data = new JSONObject();
-            data.put("to", DeviceIdKey.trim());
+            data.put("to", deviceIdKey.trim());
 
             JSONObject info = new JSONObject();
             info.put("title", "FCM Notificatoin");
-            info.put("body", messageBox.getText().toString());
+            info.put("body", messageBox);
             data.put("notification", info);
 
             System.out.println(data.toString());
@@ -64,8 +63,9 @@ public class NotificationSender extends AsyncTask<String, Void, Void> {
 
         } catch (Exception e) {
 
-
+            System.out.println(e);
         }
 
+        return null;
     }
 }
