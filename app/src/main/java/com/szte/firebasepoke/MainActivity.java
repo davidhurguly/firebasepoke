@@ -1,17 +1,22 @@
-package com.szte.firebasepoke.java;
+package com.szte.firebasepoke;
 
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
-import com.szte.firebasepoke.R;
+import com.google.firebase.messaging.RemoteMessage;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +26,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final TextView otherToken = findViewById(R.id.otherToken);
+
+        final TextView messageBox = findViewById(R.id.messageBox);
+
+        final Button sendToken = findViewById(R.id.sendButton);
+        sendToken.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         final TextView tokenDisplay = findViewById(R.id.tokenDisplay);
         FirebaseInstanceId.getInstance().getInstanceId()
@@ -37,5 +54,19 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    protected void getMessage(RemoteMessage remoteMessage){
+
+        Context context = getApplicationContext();
+
+        Toast toast = Toast.makeText(context, remoteMessage.getNotification().getBody(), Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    private void remoteMessageAssebler(){
+        RemoteMessage remoteMessage;
+
+    }
+
 
 }
