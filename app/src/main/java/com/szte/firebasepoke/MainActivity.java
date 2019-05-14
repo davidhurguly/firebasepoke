@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView messageBox = findViewById(R.id.messageBox);
 
         final Button sendToken = findViewById(R.id.sendButton);
+
         sendToken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         final TextView tokenDisplay = findViewById(R.id.tokenDisplay);
-        FirebaseInstanceId.getInstance().getInstanceId()
+        FirebaseInstanceId
+                .getInstance()
+                .getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
 
                     @Override
@@ -46,14 +49,15 @@ public class MainActivity extends AppCompatActivity {
                             Log.w(TAG, "getInstanceId failed", task.getException());
                             return;
                         }
-
                         tokenDisplay.setText(task.getResult().getToken());
                     }
                 });
     }
 
     private void remoteMessageSender(TextView otherToken, TextView messageBox) {
-       new NotificationSender().execute(otherToken.getText().toString(), messageBox.getText().toString());
+        new NotificationSender().execute(
+                        otherToken.getText().toString(),
+                        messageBox.getText().toString());
     }
 
 }

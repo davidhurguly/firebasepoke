@@ -22,57 +22,43 @@ public class NotificationSender extends AsyncTask<String, Void, Void> {
         try {
             URL url = new URL(FMCurl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setUseCaches(false);
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
 
-            conn.setUseCaches(false);
-            conn.setDoInput(true);
-            conn.setDoOutput(true);
-
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Authorization", "key=" + authKey);
-            conn.setRequestProperty("Content-Type", "application/json");
-
-            System.out.println("deviceid: " + deviceIdKey);
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Authorization", "key=" + authKey);
+                conn.setRequestProperty("Content-Type", "application/json");
 
             JSONObject data = new JSONObject();
-            data.put("to", deviceIdKey.trim());
+                data.put("to", deviceIdKey.trim());
 
             JSONObject info = new JSONObject();
-            info.put("title", "FCM Notification");
-            info.put("body", messageBox);
-            data.put("notification", info);
-
-            System.out.println("data:" + data.toString());
+                info.put("title", "FCM Notification");
+                info.put("body", messageBox);
+                data.put("notification", info);
 
             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-            System.out.println("Step");
-            wr.write(data.toString());
-            System.out.println("by");
-            wr.flush();
-            System.out.println("Step");
-            wr.close();
-
-            System.out.println("yap");
-            int responseCode = conn.getResponseCode();
-            System.out.println("Response Code : " + responseCode);
+                wr.write(data.toString());
+                wr.flush();
+                wr.close();
 
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
+                String inputLine;
+                StringBuffer response = new StringBuffer();
 
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
             }
+
             in.close();
 
-            System.out.println("Response: " + response);
         } catch (Exception e) {
-
             System.out.println(e);
             System.out.println("LocalMessage: " + e.getLocalizedMessage());
             System.out.println("Cause: " + e.getCause());
             System.out.println("Stack: " + e.getStackTrace());
             System.out.println("Message: " + e.getMessage());
-
         }
 
         return null;
