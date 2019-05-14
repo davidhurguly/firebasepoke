@@ -8,13 +8,13 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class NotificationSender extends AsyncTask<String, Void, String> {
+public class NotificationSender extends AsyncTask<String, Void, Void> {
 
     private final String authKey = "AAAAqXY9J8c:APA91bFp3mAsszOWr-b53fqHzA9GiiSerKl1V-UxIa0HY3VMSzajQWjW6pvV6F-1iN1oyjrSN--FMUM_fm9jnw-zma7-m_RezYzx0zqi19hZRpAw0uttZk5rWL8gJA3h7LVIXD2E7o1O";
     private final String FMCurl = "https://fcm.googleapis.com/fcm/send";
 
     @Override
-    protected String doInBackground(String... strings) {
+    protected Void doInBackground(String... strings) {
 
         String deviceIdKey = strings[0];
         String messageBox = strings[1];

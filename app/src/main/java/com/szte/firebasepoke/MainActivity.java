@@ -18,8 +18,6 @@ import com.google.firebase.iid.InstanceIdResult;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private static final String SERVER_AUTH_KEY = "AAAAqXY9J8c:APA91bFp3mAsszOWr-b53fqHzA9GiiSerKl1V-UxIa0HY3VMSzajQWjW6pvV6F-1iN1oyjrSN--FMUM_fm9jnw-zma7-m_RezYzx0zqi19hZRpAw0uttZk5rWL8gJA3h7LVIXD2E7o1O";
-    private static final String API_URL = "https://fcm.googleapis.com/fcm/send";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    private String remoteMessageSender(TextView otherToken, TextView messageBox) {
-       return new NotificationSender().doInBackground(otherToken.getText().toString(), messageBox.getText().toString());
+    private void remoteMessageSender(TextView otherToken, TextView messageBox) {
+       new NotificationSender().execute(otherToken.getText().toString(), messageBox.getText().toString());
     }
 
 }
